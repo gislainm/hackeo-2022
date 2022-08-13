@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom';
 import Routing from './routing';
 import reportWebVitals from './reportWebVitals';
 
+import ErrorPage from './Pages/ErrorPage';
+
 ReactDOM.render(
     <React.StrictMode>
-        <Routing />
+        <ErrorPage>
+            <Routing />
+        </ErrorPage>
     </React.StrictMode>,
     document.getElementById("root")
 );
