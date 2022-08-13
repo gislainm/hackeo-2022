@@ -5,6 +5,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const responseInfo = require('../models/responseInfo');
+const { ObjectId } = require('mongodb');
 let SECRET;
 
 exports.authenticate = (req, res, next) => {
@@ -54,5 +55,18 @@ exports.signUp = async (req, res, next) => {
 }
 
 exports.deleteUser = async (req, res, next) => {
+    SECRET = "login key for map collab users";
+    const [, token] = req.headers.authorization.split(" ");
+    let permission = jwt.verify(token, SECRET);
+    if (permission) {
+        try {
+            const deleteduser = await User.findOneAndDelete({ username: permission.username });
+            res.status(200).json(new responseInfo(false, null, deleteduser));
+        } catch (error) {
+            res.status(500).json(new responseInfo(true, "deleting account failed", null))
+        }
+    } else {
+        res.status(401).json(new responseInfo(true, "user unauthorized", null));
+    }
 
 }
