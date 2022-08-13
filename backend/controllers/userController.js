@@ -36,7 +36,7 @@ exports.login = async (req, res, next) => {
                 user: user
             }));
         } else {
-            res.status(401).json(new responseInfo(true, 'wrong password', null))
+            res.status(400).json(new responseInfo(true, 'wrong password', null))
         }
     } else {
         res.status(400).json(new responseInfo(true, 'wrong username', null))
@@ -51,4 +51,8 @@ exports.signUp = async (req, res, next) => {
     } catch (error) {
         res.status(500).json(new responseInfo(true, "signing up user failed", null));
     }
+}
+
+exports.deleteUser = async (req, res, next) => {
+
 }
