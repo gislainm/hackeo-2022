@@ -1,8 +1,7 @@
 import React from 'react';
 
-export default function DefaultPage()
+export default function DefaultPage(globals: unknown)
 {
-    console.log("IN DEFAULT PAGE")
     return <div>
         THIS IS THE DEFAULT PAGES
     </div>;
