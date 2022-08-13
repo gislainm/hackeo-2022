@@ -24,6 +24,7 @@ yarn-error.log*
 
 # ide-related
 *.code-workspace
+.env*
 
 # generated
 package-lock.json

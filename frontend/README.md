@@ -30,8 +30,10 @@ Map hustlers is the most intuitive way for students to find like-minded people! 
     ```sh
     npm install
     ```
-4. Spin up backend. Check README for details
-5. To run the frontend, use
+4. Create a .env file in the frontend root directory 
+5. Copy-paste template.env into the new .env file and fill in variable values
+6. Spin up backend. Check README for details
+7. To run the frontend, use
     ```sh
     npm start
     ```

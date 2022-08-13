@@ -35,7 +35,8 @@ export default class RouterNetwork extends React.PureComponent<{}, IGlobalState>
                             let PageWrapper = withUser(routeData.component);
                             if(routeData.hasNavBar)
                                 PageWrapper = withNavigation(routeData.component);
-                                
+                            
+                            console.log("route: "+routeData.path)
                             return <Route
                                 key={"KPage"+index}
                                 path={routeData.path}

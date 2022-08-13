@@ -4,3 +4,4 @@ These notes are for developers only. They're used for documenting seemingly-arbi
 
  - 'react' decreated to 17.0.2 in order to use 'console-feed'
  - using 'loglevel' temporarily until a better framework with server-sending ability is found
+ - using .env to store environment variables, template.env stores all the variables that need to have values for
