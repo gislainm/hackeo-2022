@@ -1,14 +1,14 @@
 import React from 'react';
 
 const withNavigation = (Component: typeof React.Component) => {
-    return class WithNavigation extends React.Component
+    return class WithNavigation extends React.Component<{globals: any}>
     {
         constructor(globals: any)
         {
             super(globals);
         }
 
-        render() : React.ReactNode 
+        render() : JSX.Element 
         {
             return <><Component /></>;
         }

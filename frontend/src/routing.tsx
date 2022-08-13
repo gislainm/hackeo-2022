@@ -32,12 +32,10 @@ export default class RouterNetwork extends React.PureComponent<{}, IGlobalState>
                 <Routes>
                     {
                         AvailableRoutes.map((routeData, index) => {
-                            const something : JSX.Element = <div>HJGSEDKLRGA</div>
                             let PageWrapper = withUser(routeData.component);
-                            // if(routeData.hasNavBar)
-                            //     PageWrapper = withNavigation(routeData.component);
-
-                            const PageRoute = routeData.component
+                            if(routeData.hasNavBar)
+                                PageWrapper = withNavigation(routeData.component);
+                                
                             return <Route
                                 key={"KPage"+index}
                                 path={routeData.path}
