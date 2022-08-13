@@ -10,5 +10,7 @@ router.post('/login', userController.login);
 router.post('/signUp', userController.signUp);
 router.get('/authenticate', userController.authenticate);
 router.delete('/deleteAccount', userController.deleteUser);
+router.post('/saveLocation', userController.saveUserCurrentLocation)
+router.get('/AllUsersLoc', userController.getAllUsersLoc);
 
 module.exports = router;

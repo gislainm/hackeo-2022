@@ -2,10 +2,12 @@
 /*eslint-disable */
 
 const User = require('../models/user');
+const UserLocation = require('../models/userLocation');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const responseInfo = require('../models/responseInfo');
 const { ObjectId } = require('mongodb');
+const moment = require('moment');
 let SECRET;
 
 exports.authenticate = (req, res, next) => {
@@ -69,4 +71,40 @@ exports.deleteUser = async (req, res, next) => {
         res.status(401).json(new responseInfo(true, "user unauthorized", null));
     }
 
+}
+
+exports.saveUserCurrentLocation = async (req, res, next) => {
+    SECRET = "login key for map collab users";
+    const token = req.body.accessToken;
+    const coords = req.body.coordinates;
+    let permission = jwt.verify(token, SECRET);
+    if (permission) {
+        try {
+            const userCurrLocation = new UserLocation({
+                user: new ObjectId(permission.id),
+                location: {
+                    type: 'Point',
+                    coordinates: coords
+                }
+            })
+            await userCurrLocation.save();
+            res.status(201).json(userCurrLocation);
+        } catch (error) {
+            res.status(500).json(new responseInfo(true, "saving user's current location failed", null));
+        }
+    } else {
+        res.status(401).json(new responseInfo(true, "user unauthorized", null));
+    }
+}
+
+exports.getAllUsersLoc = async (req, res, next) => {
+    SECRET = "login key for map collab users";
+    const [, token] = req.headers.authorization.split(" ");
+    let permission = jwt.verify(token, SECRET);
+    if (permission) {
+        const allUsersloc = await UserLocation.find({});
+        res.status(200).json(new responseInfo(false, null, allUsersloc));
+    } else {
+        res.status(401).json(new responseInfo(true, "user unauthorized", null));
+    }
 }

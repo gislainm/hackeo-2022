@@ -116,7 +116,7 @@ THIS IS A NEW FEATURE
 ```json
 {
     "endpoint": "http://localhost:3000/mapCollab/delete",
-    "command": "GET",
+    "command": "DELETE",
     "args": {
       "headers":{
         "Authorization":"Bearer accessToken"
@@ -152,6 +152,88 @@ THIS IS A NEW FEATURE
             "data": "null"
         }
 
+}
+}
+```
+
+- saving user's current location
+```json
+{
+    "endpoint": "http://localhost:3000/mapCollab/saveLocation",
+    "command": "POST",
+    "args": {
+        "content-Type": "application/json",
+        "accessToken":"user's access token from session/local storage",
+        "coordinates":"users coordinates from navigator.geolocation api"
+    },
+    "status": {
+        "200": "location saved in the database",
+        "401": "unauthorized user",
+        "500":"saving user's current location failed"
+    },
+    "return": {
+        "200": {
+            "error": "false",
+            "message": "null",
+            "data": {
+                "user":"user id referencing to users collection",
+                "location":"geoJSON point location",
+                "_id":"document id",
+                "currentDate":"Date the location document was created"
+            }
+        },
+        "401": {
+            "error": "true",
+            "message": "user unauthorized",
+            "data": "null"
+        },
+        "500":{
+            "error": "true",
+            "message": "saving user's current location failed",
+            "data": "null"
+        }
+
+}
+}
+```
+
+- get all the data from users' location collection
+```json
+{
+    "endpoint": "http://localhost:3000/mapCollab/AllUsersLoc",
+    "command": "GET",
+    "args": {
+      "headers":{
+        "Authorization":"Bearer accessToken"
+      }
+    },
+    "status": {
+        "200": "array of users location provided(OK)",
+        "401": "unauthorized user",
+    },
+    "return": {
+        "200": {
+            "error": "false",
+            "message": "null",
+            "data": {
+                [
+                     {
+                        "location": {
+                            "type": "Point",
+                            "coordinates": ["user's coordinate"]
+                        },
+                         "_id": "location id",
+                         "user": "user id",
+                        "currentDate": "Date location retrieved",
+                     }
+                ]
+            }
+        },
+        "401": {
+            "error": "true",
+            "message": "user unauthorized",
+            "data": "null"
+        }
 }
 }
 ```
