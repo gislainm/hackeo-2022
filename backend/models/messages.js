@@ -6,5 +6,8 @@ const { Schema } = mongoose;
 const messageSchema = new Schema({
     sender: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     message: { type: String, required: true },
-    time
-})
+    chatRoomId: { type: Schema.Types.ObjectId, ref: 'Chatroom', required: true }
+}, { timestamps: true })
+
+const Model = mongoose.model('Message', messageSchema)
+module.exports = Model;
