@@ -6,6 +6,8 @@ import { AvailableRoutes } from './RouterData/Routing';
 import withUser from './Wrappers/withUser';
 import withNavigation from './Wrappers/withNavigation';
 
+import TestingPage from './Pages/TestingPage'
+
 import DefaultPage from './Pages/TestingPage';
 
 interface IGlobalState
@@ -25,7 +27,6 @@ export default class RouterNetwork extends React.PureComponent<{}, IGlobalState>
 
     render()
     {
-        console.log("Overlay rendering")
         return <Router>
             <Suspense fallback={<Loading />}>
                 <Routes>
@@ -33,12 +34,12 @@ export default class RouterNetwork extends React.PureComponent<{}, IGlobalState>
                         AvailableRoutes.map((routeData, index) => {
                             let PageWrapper = withUser(routeData.component);
                             if(routeData.hasNavBar)
-                            PageWrapper = withNavigation(routeData.component);
+                                PageWrapper = withNavigation(routeData.component);
                             
                             return <Route
                                 key={"KPage"+index}
                                 path={routeData.path}
-                                element={<PageWrapper globals={this.state} />} />;
+                                element={<PageWrapper />} />;
                         })
                     }
                 </Routes>
