@@ -7,7 +7,7 @@ THIS IS A NEW FEATURE
 - login: 
 ```json   
 {
-    "endpoint": "http://localhost:3000/mapCollab/login",
+    "endpoint": "http://localhost:8080/mapCollab/login",
     "command": "POST",
     "args": {
         "content-Type": "application/json",
@@ -45,7 +45,7 @@ THIS IS A NEW FEATURE
 - signUp:
 ```json
 {
-    "endpoint": "http://localhost:3000/mapCollab/signUp",
+    "endpoint": "http://localhost:8080/mapCollab/signUp",
     "command": "POST",
     "args": {
         "content-Type": "application/json",
@@ -83,7 +83,7 @@ THIS IS A NEW FEATURE
 - authenticate user:
 ```json
 {
-    "endpoint": "http://localhost:3000/mapCollab/authenticate",
+    "endpoint": "http://localhost:8080/mapCollab/authenticate",
     "command": "GET",
     "args": {
       "headers":{
@@ -115,7 +115,7 @@ THIS IS A NEW FEATURE
 - deleting account: 
 ```json
 {
-    "endpoint": "http://localhost:3000/mapCollab/delete",
+    "endpoint": "http://localhost:8080/mapCollab/delete",
     "command": "DELETE",
     "args": {
       "headers":{
@@ -159,7 +159,7 @@ THIS IS A NEW FEATURE
 - saving user's current location
 ```json
 {
-    "endpoint": "http://localhost:3000/mapCollab/saveLocation",
+    "endpoint": "http://localhost:8080/mapCollab/saveLocation",
     "command": "POST",
     "args": {
         "content-Type": "application/json",
@@ -200,7 +200,7 @@ THIS IS A NEW FEATURE
 - get all the data from users' location collection
 ```json
 {
-    "endpoint": "http://localhost:3000/mapCollab/AllUsersLoc",
+    "endpoint": "http://localhost:8080/mapCollab/AllUsersLoc",
     "command": "GET",
     "args": {
       "headers":{
