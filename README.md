@@ -112,3 +112,46 @@ THIS IS A NEW FEATURE
 }
 }
 ```
+- deleting account: 
+```json
+{
+    "endpoint": "http://localhost:3000/mapCollab/delete",
+    "command": "GET",
+    "args": {
+      "headers":{
+        "Authorization":"Bearer accessToken"
+      }
+    },
+    "status": {
+        "200": "account deleted(OK)",
+        "401": "unauthorized user",
+        "500":"deleting account failed"
+    },
+    "return": {
+        "200": {
+            "error": "false",
+            "message": "null",
+            "data": {
+                "deletedUser": {
+                    "_id": "user id",
+                    "name": "user's fullname",
+                    "username": "username",
+                    "email": "user's email",
+                    "password": "user's hashed password"
+                }
+            }
+        },
+        "401": {
+            "error": "true",
+            "message": "user unauthorized",
+            "data": "null"
+        },
+        "500":{
+            "error": "true",
+            "message": "deleting account failed",
+            "data": "null"
+        }
+
+}
+}
+```
