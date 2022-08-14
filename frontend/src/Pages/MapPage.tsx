@@ -57,6 +57,14 @@ export default function MapPage(globals: unknown)
             LocationHandler.sendLocation(latCoord+"", longCoord+"");
 
             LocationHandler.getLocations(snapshot.lat+"", snapshot.long+"").then(response => {
+                    console.log(response);
+                    const mapDatas:ILocation[] = response.map(locData => ({
+                        name: "A Person",
+                        lat: locData['location']['coordinates'][0],
+                        long: locData['location']['coordinates'][1],
+                        mogiUrl: locData['user']['mogiUrl'],
+                    }));
+                    setOtherLocations(mapDatas);
                 }); //append self location 
         });
     }, []);
