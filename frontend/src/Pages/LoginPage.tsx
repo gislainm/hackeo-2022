@@ -39,41 +39,43 @@ export default function LoginPage(globals: unknown)
 return (
     <ThemeProvider theme={theme}>
         <Grid container spacing={0} rowSpacing={0} columnSpacing={0}>
-            <Grid item xs={12} md={6} spacing={0} rowSpacing={0} columnSpacing={0}>
-                <Box
-                sx={{
-                    width: '100%',
-                    height: '100vh',
-                    marginLeft: '-8px',
-                    marginTop: '-8px',
-                    backgroundColor: 'primary.main',
-                    overflow: 'hidden',
-                    paddingBottom: '10px'
-                }}>
-
+            <Grid item md={6} spacing={0} rowSpacing={0} columnSpacing={0} 
+                  xs={12} 
+                  sx={{
+                    display: { xs: "none", lg: "block" }
+                  }}
+            >
                 <Box
                     component="img"
+                    alt="Cartoon"
+                    src="img/cartoon1.png" 
                     sx={{
-                        height: 150,
-                        width: 150,
-                        margin: 2
-                    }}
-                    alt="Microsoft Icon"
-                    src="img/cartoon_img/half_moon.png" 
-                />
+                        width: '100%',
+                        height: '100vh',
+                        marginLeft: '-8px',
+                        marginTop: '-8px',
+                        marginBottom: '-15px',
+                        backgroundColor: 'primary.main',
+                        overflow: 'hidden',
+                        objectFit: 'cover'
+                    }}>
+            </Box>
 
 
 
-                </Box>
+
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid md={6}
+                item xs={12} 
+                sx={{
+                    display: { xs: "block", lg: "block" }
+                  }}>
                 <Box
                 sx={{
                     marginTop: 10,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    border: '1px solid red',
                     height: '100 vh'
                 }}>
                 <Typography component="h1" variant="h5">
