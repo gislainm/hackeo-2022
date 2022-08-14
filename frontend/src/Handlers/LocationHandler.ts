@@ -29,7 +29,7 @@ export default class LocationHandler
         return data.data;
     }
 
-    public static async getLocations(lat: string, long: string) : Promise<{}>
+    public static async getLocations(lat: string, long: string) : Promise<{}[]>
     {
         console.log("sendLocgetLocationsation(): "+lat+"|"+long);
 
@@ -42,10 +42,10 @@ export default class LocationHandler
         console.log(response);
 
         if(response['error'] || response instanceof RequestError)
-            return {};
+            return [];
 
         const data = JSON.parse(response.toString());
         
-        return data.data;
+        return data.data as {}[];
     }
 }
