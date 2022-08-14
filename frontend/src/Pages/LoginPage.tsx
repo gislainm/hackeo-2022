@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+// import { Grid, Button } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +13,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import LoginHandler from '../Handlers/LoginHandler';
+import { Navigate } from 'react-router-dom';
 
 let theme = createTheme({
   palette: {
@@ -27,6 +30,11 @@ let theme = createTheme({
 
 export default function LoginPage(globals: unknown)
 {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [isAuthenticated, setAuthentication] = useState(false);
+
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -34,7 +42,10 @@ export default function LoginPage(globals: unknown)
             email: data.get('email'),
             password: data.get('password'),
         });
-        };
+    };
+
+    if(isAuthenticated)
+        return <Navigate to="/home" />;
 
 return (
     <ThemeProvider theme={theme}>
@@ -92,6 +103,8 @@ return (
                             autoFocus
                             required
                             fullWidth
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
                         />
                     </Box>
                 
@@ -106,6 +119,8 @@ return (
                         autoComplete="current-password"
                         required
                         fullWidth
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                     />
                 </Box>
                 <FormControlLabel
@@ -119,6 +134,11 @@ return (
                     sx={{ mt: 3, mb: 2 }}
                     color="secondary"
                     style={{borderRadius: 50}}
+                    onClick={e => {
+                        LoginHandler.attemptLogin(username, password).then(response => {
+                            setAuthentication(response);
+                        });
+                    }}
                 >
                     Log In
                 </Button>
