@@ -79,7 +79,7 @@ return (
                     height: '100 vh'
                 }}>
                 <Typography component="h1" variant="h5">
-                    <strong>Welcome to Map Collab</strong>
+                    <strong>Welcome to Map Hustlers</strong>
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} style={{textAlign: 'center', width: '400px'}}>
                     
