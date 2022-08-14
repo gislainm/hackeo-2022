@@ -1,11 +1,5 @@
-export class RequestError
-{
-    readonly code: number;
-    constructor(code)
-    {
-        this.code = code;
-    }
-}
+import RequestError from './RequestError';
+
 
 interface APIHandlerProps<T> 
 {
@@ -65,7 +59,7 @@ export async function APIHandler<T>( url: string, props: APIHandlerProps<T> ) : 
   
   console.log("To: "+url + urlQS);
 
-  return fetch(url + urlQS, requestOptions)
+  return fetch("http://"+url + urlQS, requestOptions)
     .then(errorCheck)
     .catch(error => {
       console.log(error); 

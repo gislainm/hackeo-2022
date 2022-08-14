@@ -1,6 +1,7 @@
 import { APIHandler } from "../Pages/Utils/apiHandler";
 
 import { BackendHostname } from '../Pages/Utils/constants';
+import RequestError from "../Pages/Utils/RequestError";
 
 export default class LoginHandler
 {
@@ -19,7 +20,7 @@ export default class LoginHandler
 
         console.log("attemptLogin() response: ", response);
 
-        if(response['error'])
+        if(response['error'] || response instanceof RequestError)
             return false;
 
         return true;

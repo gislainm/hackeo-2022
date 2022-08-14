@@ -33,6 +33,7 @@ export default function LoginPage(globals: unknown)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [isAuthenticated, setAuthentication] = useState(false);
+    const [firstAttempt, setFirstAttempt] = useState(true);
 
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -127,6 +128,7 @@ return (
                     control={<Checkbox value="remember" color="primary" />}
                     label="Remember me"
                 />
+                {!firstAttempt && !isAuthenticated ? "Login failed, please try again" : undefined}
                 <Button
                     type="submit"
                     fullWidth
@@ -135,8 +137,11 @@ return (
                     color="secondary"
                     style={{borderRadius: 50}}
                     onClick={e => {
+                        setFirstAttempt(false);
                         LoginHandler.attemptLogin(username, password).then(response => {
-                            setAuthentication(response);
+                            console.log("afwefg",response)
+                            if(response)
+                                setAuthentication(response);
                         });
                     }}
                 >
