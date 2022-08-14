@@ -106,7 +106,7 @@ exports.getAllUsersLoc = async (req, res, next) => {
     let permission = jwt.verify(token, SECRET);
     if (permission) {
         console.log("permission is true")
-        const allUsersloc = await UserLocation.find({});
+        const allUsersloc = await UserLocation.find({}).populate('users');
         res.status(200).json(new responseInfo(false, null, allUsersloc));
     } else {
         res.status(401).json(new responseInfo(true, "user unauthorized", null));

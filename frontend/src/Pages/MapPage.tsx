@@ -57,6 +57,7 @@ export default function MapPage(globals: unknown)
             LocationHandler.sendLocation(latCoord+"", longCoord+"");
 
             LocationHandler.getLocations(snapshot.lat+"", snapshot.long+"").then(response => {
+                console.log(response)
                 }); //append self location 
         });
     }, []);
