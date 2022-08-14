@@ -102,11 +102,11 @@ exports.saveUserCurrentLocation = async (req, res, next) => {
 
 exports.getAllUsersLoc = async (req, res, next) => {
     SECRET = "login key for map collab users";
-    const [, token] = req.headers.authorization.split(" "); 
+    const [, token] = req.headers.authorization.split(" ");
     let permission = jwt.verify(token, SECRET);
     if (permission) {
         console.log("permission is true")
-        const allUsersloc = await UserLocation.find({});
+        const allUsersloc = await UserLocation.find({}).populate('user');
         res.status(200).json(new responseInfo(false, null, allUsersloc));
     } else {
         res.status(401).json(new responseInfo(true, "user unauthorized", null));
