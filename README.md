@@ -237,3 +237,162 @@ THIS IS A NEW FEATURE
 }
 }
 ```
+
+- create a Chatroom and add participants
+```json
+{
+    "endpoint": "http://localhost:8080/mapCollab/startChatroom",
+    "command": "POST",
+    "args": {
+       "content-Type": "application/json",
+        "participants":["users ids"],
+    },
+    "status": {
+        "201": "chatroom created(OK)",
+        "500": "creating new chatroom failed",
+    },
+    "return": {
+        "200": {
+            "error": "false",
+            "message": "null",
+            "data": {
+                "participants": ["users id"],
+                "_id": "62f84e4372ae3fb2d03aded6",
+                 "createdAt": "timestamp",
+                "updatedAt": "timestamp",
+            }
+        },
+        "500": {
+            "error": "true",
+            "message": "creating new chatroom failed",
+            "data": "null"
+        }
+}
+}
+```
+
+- get All Messages in a chatroom
+```json
+{
+    "endpoint": "http://localhost:8080/mapCollab/getAllMessages?chatroomId=chatroomId",
+    "command": "GET",
+    "args": {},
+    "status": {
+        "200": "response successful(OK)",
+        "500": "fetching messages failed",
+        "400":"chatroom doesn't exitst in the database"
+    },
+    "return": {
+        "200": {
+            "error": "false",
+            "message": "null",
+            "data": [{
+                        "_id": "message id",
+                        "sender": "sender's id",
+                        "message": "message content",
+                        "chatRoomId": {
+                                "_id": "chatroom id",
+                                "participants": ["patricipants ids"],
+                                "createdAt": "timestamp",
+                                "updatedAt": "timestamp",
+                            },
+                        "createdAt": "timestamp",
+                        "updatedAt": "timestamp",
+            }]
+        },
+        "500": {
+            "error": "true",
+            "message": "fetching messages failed",
+            "data": "null"
+        },
+        "400": {
+            "error": "true",
+            "message": "chatroom doesn't exitst in the database",
+            "data": "null"
+        }
+}
+}
+```
+
+- create a Message and save it to the messages collection
+```json
+{
+    "endpoint": "http://localhost:8080/mapCollab/createMessage",
+    "command": "Post",
+    "args": {
+        "content-Type": "application/json",
+        "sender":"sender's id",
+        "message":"message content",
+        "chatRoomId":"chatroom id"
+    },
+    "status": {
+        "201": "message successfully created(OK)",
+        "500": "creating new message failed",
+    },
+    "return": {
+        "201": {
+            "error": "false",
+            "message": "null",
+            "data": {
+                    "sender": "sender id",
+                    "message": "message content",
+                    "chatRoomId": "chatroom id",
+                    "_id": "message id",
+                    "createdAt": "timestamp",
+                    "updatedAt": "timestamp",
+    }
+        },
+        "500": {
+            "error": "true",
+            "message": "creating new message failed",
+            "data": "null"
+        },
+}
+}
+```
+
+- add a user In Chatroom after it has started
+```json
+{
+    "endpoint": "http://localhost:8080/mapCollab/adduserInChatroom",
+    "command": "POST",
+    "args": {
+        "content-Type": "application/json",
+        "userToAdd":"user's id",
+        "chatRoomId":"chatroom id"
+    },
+    "status": {
+        "202": "user add to participants array of chatroom(OK)",
+        "500": "Adding user to chatroom failed",
+        "400":"Chatroom doesn't exist"
+    },
+    "return": {
+        "202": {
+            "error": "false",
+            "message": "null",
+            "data": {
+                    "_id": "chatroom id",
+                    "participants":[{
+                        "_id": "user id",
+                        "name": "user full name",
+                        "username": "username",
+                        "email": "user email",
+                        "password": "hashed password",
+                    }],
+                    "createdAt": "timestamp",
+                    "updatedAt": "timestamp",
+                 }
+        },
+        "500": {
+            "error": "true",
+            "message": "Adding user to chatroom failed",
+            "data": "null"
+        },
+        "400": {
+            "error": "true",
+            "message": "Chatroom doesn't exist",
+            "data": "null"
+        },
+}
+}
+```

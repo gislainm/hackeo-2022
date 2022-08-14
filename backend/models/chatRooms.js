@@ -5,4 +5,7 @@ const { Schema } = mongoose;
 
 const chatRoomSchema = new Schema({
     participants: [{ type: Schema.Types.ObjectId, ref: 'User', required: true }]
-}, { timestamps: true })
+}, { timestamps: true });
+
+const Model = mongoose.model('Chatroom', chatRoomSchema);
+module.exports = Model;

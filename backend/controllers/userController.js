@@ -7,7 +7,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const responseInfo = require('../models/responseInfo');
 const { ObjectId } = require('mongodb');
-const moment = require('moment');
 let SECRET;
 
 exports.authenticate = (req, res, next) => {
