@@ -16,6 +16,7 @@ exports.authenticate = (req, res, next) => {
         let permission = jwt.verify(token, SECRET);
         res.status(200).json(new responseInfo(false, null, permission));
     } catch (err) {
+        console.log(error)
         res.status(401).json(new responseInfo(true, "Invalid JWT permission", null));
     }
 }
@@ -52,6 +53,7 @@ exports.signUp = async (req, res, next) => {
         await newuser.save()
         res.status(201).json(new responseInfo(false, null, newuser));
     } catch (error) {
+        console.log(error)
         res.status(500).json(new responseInfo(true, "signing up user failed", null));
     }
 }
@@ -65,6 +67,7 @@ exports.deleteUser = async (req, res, next) => {
             const deleteduser = await User.findOneAndDelete({ username: permission.username });
             res.status(200).json(new responseInfo(false, null, deleteduser));
         } catch (error) {
+            console.log(error)
             res.status(500).json(new responseInfo(true, "deleting account failed", null))
         }
     } else {
@@ -90,6 +93,7 @@ exports.saveUserCurrentLocation = async (req, res, next) => {
             await userCurrLocation.save();
             res.status(201).json(userCurrLocation);
         } catch (error) {
+            console.log(error)
             res.status(500).json(new responseInfo(true, "saving user's current location failed", null));
         }
     } else {
