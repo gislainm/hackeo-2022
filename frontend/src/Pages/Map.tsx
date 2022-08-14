@@ -3,13 +3,13 @@ import { useLoadScript, Marker } from '@react-google-maps/api';
 import MapFrame from '../Components/MapFrame';
 
 //MUI Elements
-import AppBar from '@mui/material/AppBar'
+import AppBar from '@mui/material/AppBar';
 import { CssBaseline } from '@mui/material';
-import Box from '@mui/material/Box'
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import { Link } from 'react-router-dom';
 
 import './Utils/constants';
 
@@ -83,6 +83,7 @@ export default function MapPage(globals: unknown)
             <Grid item xs={6} md={6} spacing={0} rowSpacing={0} columnSpacing={0} sx={{textAlign: 'right'}}>
             
                 <Button 
+                    href="/profile"
                     variant="contained"
                     disableElevation
 
@@ -95,14 +96,12 @@ export default function MapPage(globals: unknown)
                             color: 'white'
                         }
                     }}
-                    onClick={() => {
-                        alert('clicked')
-                    }}
                 >
                     Profile
                 </Button>
 
                 <Button 
+                    href="/"
                     variant="contained"
                     disableElevation
                     sx={{ marginTop: '5px',
@@ -113,14 +112,12 @@ export default function MapPage(globals: unknown)
                             color: 'white'
                         }
                     }}
-                    onClick={() => {
-                        alert('clicked')
-                    }}
                 >
                     Classes
                 </Button>
 
                 <Button 
+                    href="/people-finder"
                     variant="contained"
                     sx={{ 
                         marginTop: '5px',
@@ -128,9 +125,6 @@ export default function MapPage(globals: unknown)
                         '&:hover':{
                             backgroundColor: '#FB4F05'
                         }
-                    }}
-                    onClick={() => {
-                        alert('clicked')
                     }}
                 >
                     Find People
