@@ -26,6 +26,7 @@ export async function APIHandler<T>( url: string, props: APIHandlerProps<T> ) : 
     "Content-Type":  props.contentType || "application/json",
     "Access-Control-Allow-Credentials": "true",
     "Access-Control-Allow-Origin":"*",
+    "Authorization": "Bearer "+localStorage.getItem("accessToken"),
   };
   let requestOptions: RequestInit = {
     method: props.method,

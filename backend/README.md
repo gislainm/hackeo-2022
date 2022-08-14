@@ -243,9 +243,10 @@ THIS IS A NEW FEATURE
     "endpoint": "http://localhost:8080/mapCollab/AllUsersLoc",
     "command": "GET",
     "args": {
-      "headers":{
-        "Authorization":"Bearer accessToken"
-      }
+    //   "headers":{
+    //     "Authorization":"Bearer accessToken"
+    //   }
+      "accessToken":"String, JWT session token",
     },
     "status": {
         "200": "array of users location provided(OK)",

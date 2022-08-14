@@ -15,6 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LoginHandler from '../Handlers/LoginHandler';
 import { Navigate } from 'react-router-dom';
+import Globals from './Utils/globalstate';
 
 let theme = createTheme({
   palette: {
@@ -28,7 +29,7 @@ let theme = createTheme({
 });
 
 
-export default function LoginPage(globals: unknown)
+export default function LoginPage(globals: any)
 {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -39,14 +40,14 @@ export default function LoginPage(globals: unknown)
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        // console.log({
+        //     email: data.get('email'),
+        //     password: data.get('password'),
+        // });
     };
 
     if(isAuthenticated)
-        return <Navigate to="/home" />;
+        return <Navigate to="/" />;
 
 return (
     <ThemeProvider theme={theme}>
@@ -73,8 +74,6 @@ return (
                     alt="Microsoft Icon"
                     src="img/cartoon_img/half_moon.png" 
                 />
-
-
 
                 </Box>
             </Grid>
@@ -139,9 +138,15 @@ return (
                     onClick={e => {
                         setFirstAttempt(false);
                         LoginHandler.attemptLogin(username, password).then(response => {
-                            console.log("afwefg",response)
                             if(response)
-                                setAuthentication(response);
+                            {
+                                Globals.isAuthenticated = true;
+                                Globals.mogiUrl = response['user'].mogiUrl;
+
+                                localStorage.setItem("accessToken", response['accessToken']);
+
+                                setAuthentication(true);
+                            }
                         });
                     }}
                 >
@@ -195,10 +200,6 @@ return (
                     alt="Microsoft Icon"
                     src="img/microsoft_icon.png" 
                 />
-
-
-
-
 
                 </Box>
             </Box>

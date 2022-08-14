@@ -22,8 +22,6 @@ Map hustlers is the most intuitive way for students to find like-minded people! 
 * [![React][React.js]][React-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 
-<<<<<<< HEAD
-
 ## Getting Started
 1. Install Nodejs
 2. Install npm

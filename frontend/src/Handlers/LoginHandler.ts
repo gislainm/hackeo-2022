@@ -5,24 +5,27 @@ import RequestError from "../Pages/Utils/RequestError";
 
 export default class LoginHandler
 {
-    public static async attemptLogin(username: string, password: string) : Promise<boolean>
+    public static async attemptLogin(username: string, password: string) : Promise<{}>
     {
         console.log("attemptLogin(): "+username);
 
         const response = await APIHandler(`${BackendHostname}/mapCollab/login`, {
             method: "POST",
-            responseType: Object,
+            responseType: String,
             data: {
                 username: username,
                 password: password,
             },
         });
 
-        console.log("attemptLogin() response: ", response);
+        console.log("attemptLogin() response:")
+        console.log(response);
 
         if(response['error'] || response instanceof RequestError)
-            return false;
+            return {};
 
-        return true;
+        const data = JSON.parse(response.toString());
+        
+        return data.data;
     }
 }

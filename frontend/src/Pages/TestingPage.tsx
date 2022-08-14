@@ -1,9 +1,11 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
+import Globals from './Utils/globalstate';
 
-export default function DefaultPage(globals: unknown) : JSX.Element
+export default function DefaultPage(globals: any) : JSX.Element
 {
-    console.log("RENDER TESTING PAGE")
-    return <div>
-        THIS IS THE DEFAULT PAGES
-    </div>;
+    if(Globals.isAuthenticated)
+        return <Navigate to="/home" />;
+    
+    return <Navigate to="/login" />;
 }

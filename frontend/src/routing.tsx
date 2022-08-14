@@ -10,9 +10,12 @@ import TestingPage from './Pages/TestingPage'
 
 import DefaultPage from './Pages/TestingPage';
 
+//TODO global state via this does not work
+//use producer/consumer or redux...eventually
 interface IGlobalState
 {
     authenticated: boolean;
+    updateState: Function;
 }
 
 export default class RouterNetwork extends React.PureComponent<{}, IGlobalState>
@@ -20,13 +23,24 @@ export default class RouterNetwork extends React.PureComponent<{}, IGlobalState>
     constructor(props)
     {
         super(props);
+
+        this.updateGlobalState = this.updateGlobalState.bind(this);
+
         this.state = {
             authenticated: false,
+            updateState: this.updateGlobalState,
         };
+    }
+
+    private updateGlobalState(obj: any)
+    {
+        this.setState(obj);
     }
 
     render()
     {
+        console.log("refreshed routing");
+
         return <Router>
             <Suspense fallback={<Loading />}>
                 <Routes>
@@ -36,7 +50,6 @@ export default class RouterNetwork extends React.PureComponent<{}, IGlobalState>
                             if(routeData.hasNavBar)
                                 PageWrapper = withNavigation(routeData.component);
                             
-                            console.log("route: "+routeData.path)
                             return <Route
                                 key={"KPage"+index}
                                 path={routeData.path}

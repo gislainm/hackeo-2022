@@ -1,6 +1,6 @@
 import HomePage from "../Pages/HomePage";
 import LoginPage from "../Pages/LoginPage";
-import MapPage from "../Pages/Map";
+import MapPage from "../Pages/MapPage";
 import DefaultPage from "../Pages/TestingPage";
 
 export default {}
@@ -37,14 +37,20 @@ export const RouterPages: RouteMap = {
         hasNavBar: false,
     },
     _Map: {
-        path: "/people-finder",
+        path: "/finder",
         component: MapPage,
         hasNavBar: false,
     },
 };
 
-
 export const AvailableRoutes = [
+    RouterPages._Default,
+    RouterPages._Home,
+    RouterPages._Login,
+    RouterPages._Map,
+]
+
+export const FullRoutes = [
     RouterPages._Default,
     RouterPages._Home,
     RouterPages._Login,
