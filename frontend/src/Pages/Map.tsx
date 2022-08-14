@@ -2,6 +2,15 @@ import React, { useState } from 'react';
 import { useLoadScript, Marker } from '@react-google-maps/api';
 import MapFrame from '../Components/MapFrame';
 
+//MUI Elements
+import AppBar from '@mui/material/AppBar'
+import { CssBaseline } from '@mui/material';
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+
 import './Utils/constants';
 
 import '../PageStyling/Map.css'
@@ -50,11 +59,95 @@ export default function MapPage(globals: unknown)
     ];
 
     return <div>
-        THIS PAGE IS MAPS
+        
+        <Grid container spacing={0} rowSpacing={0} columnSpacing={0}
+            
+        
+        
+        >
+            <Grid item xs={6} md={6} spacing={0} rowSpacing={0} columnSpacing={0}>
+                <Typography
+                sx={{
+                    fontWeight: 'bold',
+                    color: '#892FFC',
+                    paddingTop: '10px',
+                    paddingLeft: '10px',
+                    width: 'fit-content',
+
+                }}
+                
+                >Map Hustlers
+                </Typography>
+            </Grid>
+
+            <Grid item xs={6} md={6} spacing={0} rowSpacing={0} columnSpacing={0} sx={{textAlign: 'right'}}>
+            
+                <Button 
+                    variant="contained"
+                    disableElevation
+
+                    sx={{ 
+                        marginTop: '5px',
+                        backgroundColor: 'white',
+                        color: '#892FFC',
+                        '&:hover':{
+                            backgroundColor: '#892FFC',
+                            color: 'white'
+                        }
+                    }}
+                    onClick={() => {
+                        alert('clicked')
+                    }}
+                >
+                    Profile
+                </Button>
+
+                <Button 
+                    variant="contained"
+                    disableElevation
+                    sx={{ marginTop: '5px',
+                        backgroundColor: 'white',
+                        color: '#892FFC',
+                        '&:hover':{
+                            backgroundColor: '#892FFC',
+                            color: 'white'
+                        }
+                    }}
+                    onClick={() => {
+                        alert('clicked')
+                    }}
+                >
+                    Classes
+                </Button>
+
+                <Button 
+                    variant="contained"
+                    sx={{ 
+                        marginTop: '5px',
+                        backgroundColor: '#892FFC',
+                        '&:hover':{
+                            backgroundColor: '#FB4F05'
+                        }
+                    }}
+                    onClick={() => {
+                        alert('clicked')
+                    }}
+                >
+                    Find People
+                </Button>
+            </Grid>
+        </Grid>
+
+
+        
+
+
+
         {MapFrame(
             snapshot.lat, 
             snapshot.long, 
             zoom,
             peopleMarkers,)}
+
     </div>;
 }
