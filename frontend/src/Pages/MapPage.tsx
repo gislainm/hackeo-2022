@@ -8,6 +8,15 @@ import '../PageStyling/Map.css'
 import Globals from './Utils/globalstate';
 import LocationHandler from '../Handlers/LocationHandler';
 
+//MUI Elements
+import AppBar from '@mui/material/AppBar';
+import { CssBaseline } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import { Link } from 'react-router-dom';
+
 interface ILocation
 {
     name: string;
@@ -76,6 +85,79 @@ export default function MapPage(globals: unknown)
             }} />);
 
     return <div>
+
+<Grid container spacing={0} rowSpacing={0} columnSpacing={0}
+            
+        
+        
+            >
+                <Grid item xs={6} md={6} spacing={0} rowSpacing={0} columnSpacing={0}>
+                    <Typography
+                    sx={{
+                        fontWeight: 'bold',
+                        color: '#892FFC',
+                        paddingTop: '10px',
+                        paddingLeft: '10px',
+                        width: 'fit-content',
+    
+                    }}
+                    
+                    >Map Hustlers
+                    </Typography>
+                </Grid>
+    
+                <Grid item xs={6} md={6} spacing={0} rowSpacing={0} columnSpacing={0} sx={{textAlign: 'right'}}>
+                
+                    <Button 
+                        href="/profile"
+                        variant="contained"
+                        disableElevation
+    
+                        sx={{ 
+                            marginTop: '5px',
+                            backgroundColor: 'white',
+                            color: '#892FFC',
+                            '&:hover':{
+                                backgroundColor: '#892FFC',
+                                color: 'white'
+                            }
+                        }}
+                    >
+                        Profile
+                    </Button>
+    
+                    <Button 
+                        href="/"
+                        variant="contained"
+                        disableElevation
+                        sx={{ marginTop: '5px',
+                            backgroundColor: 'white',
+                            color: '#892FFC',
+                            '&:hover':{
+                                backgroundColor: '#892FFC',
+                                color: 'white'
+                            }
+                        }}
+                    >
+                        Classes
+                    </Button>
+    
+                    <Button 
+                        href="/finder"
+                        variant="contained"
+                        sx={{ 
+                            marginTop: '5px',
+                            backgroundColor: '#892FFC',
+                            '&:hover':{
+                                backgroundColor: '#FB4F05'
+                            }
+                        }}
+                    >
+                        Find People
+                    </Button>
+                </Grid>
+            </Grid>
+    
         THIS PAGE IS MAPS
         {MapFrame(
             snapshot.lat, 
