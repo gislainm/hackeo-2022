@@ -1,5 +1,6 @@
 import HomePage from "../Pages/HomePage";
 import LoginPage from "../Pages/LoginPage";
+import ProfilePage from "../Pages/ProfilePage";
 import MapPage from "../Pages/Map";
 import DefaultPage from "../Pages/TestingPage";
 
@@ -36,6 +37,11 @@ export const RouterPages: RouteMap = {
         component: HomePage,
         hasNavBar: false,
     },
+    _Profile: {
+        path: "/profile",
+        component: ProfilePage,
+        hasNavBar: true,
+    },
     _Map: {
         path: "/people-finder",
         component: MapPage,
@@ -48,5 +54,6 @@ export const AvailableRoutes = [
     RouterPages._Default,
     RouterPages._Home,
     RouterPages._Login,
+    RouterPages._Profile,
     RouterPages._Map,
 ]
